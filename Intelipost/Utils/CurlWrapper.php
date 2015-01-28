@@ -162,9 +162,6 @@ final class CurlWrapper {
             );
             if ($error == CURLE_SSL_PEER_CERTIFICATE || $error == CURLE_SSL_CACERT || $error == 77) {
                 curl_setopt($s, CURLOPT_SSL_VERIFYPEER, true);
-                curl_setopt($s, CURLOPT_CAINFO, SYSTEM_DIR . 'integracoesProxies/util/certificados/ca-bundle.crt');
-                //curl_setopt($s,CURLOPT_CAINFO,'mozilla.pem'); /* fixed! */
-                //debug(SYSTEM_DIR . 'integracoesProxies/util/certificados/certificado_kanlo_com_br.crt');
                 $this->_result = curl_exec($s);
                 $traceItem = array(
                     'errorno' => curl_errno($s),
@@ -175,29 +172,9 @@ final class CurlWrapper {
         $this->_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         $this->_fullStatus = curl_getinfo($s);
 
-// =============== TESTE =================================================================== //
-// 
-//        $res = $this->curl_trace_redirects("https://www.cremme.com.br/commerce-api/api");
-//        foreach ($res as $item) {
-//            if (isset($item['timeout'])) {
-//                debug("Timeout reached!");
-//            } else if (isset($item['error'])) {
-//                debug("error: " . $item['error'] . "");
-//            } else {
-//                debug($item['url']);
-//                if (!empty($item['redirect_url'])) {
-//                    // redirection
-//                    debug(" -> (" . $item['http_code'] . ")");
-//                }
-//            }
-//        }
-// ===========================================================================================
-
         if ($showErrors && !$this->_result) {
             trigger_error(curl_error($s));
         }
-
-        mail('adilo@eccosys.com.br', 'trace do curl marketplaces', print_r($this, true));
         curl_close($s);
     }
 
@@ -229,100 +206,4 @@ final class CurlWrapper {
         return $this->_url;
     }
 
-// ==== FUNCTION TESTE =================================================== //
-//    public function curl_trace_redirects($url, $timeout = 15) {
-//
-//        $result = array();
-//        $s = curl_init();
-//
-//        $trace = true;
-//        $currentUrl = $url;
-//
-//        $urlHist = array();
-//        while ($trace && $timeout > 0 && !isset($urlHist[$currentUrl])) {
-//            $urlHist[$currentUrl] = true;
-//
-//                    curl_setopt($s, CURLOPT_URL, $currentUrl);
-//        curl_setopt($s, CURLOPT_HTTPHEADER, $this->_httpHeaders);
-//        curl_setopt($s, CURLOPT_TIMEOUT, $this->_timeout);
-//        curl_setopt($s, CURLOPT_MAXREDIRS, $this->_maxRedirects);
-//        curl_setopt($s, CURLOPT_RETURNTRANSFER, $this->_returnTransfer);
-//        curl_setopt($s, CURLOPT_FOLLOWLOCATION, $this->_followlocation);
-//        curl_setopt($s, CURLOPT_COOKIEJAR, $this->_cookieFileLocation);
-//        curl_setopt($s, CURLOPT_COOKIEFILE, $this->_cookieFileLocation);
-//       // curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false);
-//
-//        if ($this->_authentication == 1) {
-//            curl_setopt($s, CURLOPT_USERPWD, $this->_auth_name . ':' . $this->_auth_pass);
-//        }
-//
-//        if ($this->_post) {
-//            curl_setopt($s, CURLOPT_POST, 1);
-//            curl_setopt($s, CURLOPT_POSTFIELDS, $this->_postFields);
-//        } elseif ($this->_put) {
-//            curl_setopt($s, CURLOPT_CUSTOMREQUEST, $this->_customRequest);
-//            curl_setopt($s, CURLOPT_POSTFIELDS, $this->_postFields);
-//        } else {
-//            curl_setopt($s, CURLOPT_CUSTOMREQUEST, $this->_customRequest);
-//        }
-//
-//        if ($this->_includeHeader) {
-//            curl_setopt($s, CURLOPT_HEADER, true);
-//        }
-//
-//        if ($this->_encoding != '')
-//            curl_setopt($s, CURLOPT_ENCODING, $this->_encoding);
-//
-//        if ($this->_noBody) {
-//            curl_setopt($s, CURLOPT_NOBODY, true);
-//        }
-//
-//        if ($this->_binaryTransfer) {
-//            curl_setopt($s, CURLOPT_BINARYTRANSFER, true);
-//        }
-//
-//        curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent);
-//        curl_setopt($s, CURLOPT_REFERER, $this->_referer);
-//
-//            $output = curl_exec($s);
-//
-//            if ($output === false) {
-//                $traceItem = array(
-//                    'errorno' => curl_errno($s),
-//                    'error' => curl_error($s),
-//                );
-//                            debug($traceItem);
-//                $trace = false;
-//            } else {
-//                $curlinfo = curl_getinfo($s);
-//
-//                if (isset($curlinfo['total_time'])) {
-//                    $timeout -= $curlinfo['total_time'];
-//                }
-//
-//                if (!isset($curlinfo['redirect_url'])) {
-//                    $curlinfo['redirect_url'] = get_redirect_url($output);
-//                }
-//
-//                if (!empty($curlinfo['redirect_url'])) {
-//                    $currentUrl = $curlinfo['redirect_url'];
-//                } else {
-//                    $trace = false;
-//                }
-//
-//                $traceItem = $curlinfo;
-//            }
-//
-//            $result[] = $traceItem;
-//        }
-//
-//        if ($timeout < 0) {
-//            $result[] = array('timeout' => $timeout);
-//        }
-//
-//        curl_close($s);
-//
-//        return $result;
-//    }
-// =================================================================================
 }
