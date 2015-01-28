@@ -2,7 +2,7 @@
 
 namespace Intelipost\Response;
 
-abstract class IntelipostResponseBase extends \IntegracaoLogisticaResult {
+abstract class IntelipostResponseBase {
 
     protected $apiResult;
     protected $resultObj;

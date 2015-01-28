@@ -10,21 +10,24 @@ final class IntelipostProxy {
     private $_curl;
     private $_baseURL;
     
+    private function InitializeDefaultCurl()
+    {
+        $this->_curl = new Utils\CurlWrapper();
+        $this->_curl->SetHttpHeaders("Accept: application/json");
+        $this->_curl->SetHttpHeaders("Content-Type: application/json");
+        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);        
+        $this->_curl->SetReturnTransfer(true);
+        $this->_curl->SetIncludeHeader(false);
+        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;        
+    }
+    
     /**
      * @return Response\IntelipostMetodosDeEnvioResponse
      */
     public function ConsultarMetodosDeEnvio()
     {
-        $this->_curl = new Utils\CurlWrapper('GET');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);        
-        $this->_curl->SetReturnTransfer(true);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
-        $this->_curl->SetIncludeHeader(false);
-        $this->_curl->SetCustomRequest("GET");
-        
+        $this->InitializeDefaultCurl();        
+        $this->_curl->SetCustomRequest("GET");        
         $this->_curl->CreateCurl($this->_baseURL . "/info");
         
         return new Response\IntelipostMetodosDeEnvioResponse($this->_curl->GetResult());        
@@ -36,16 +39,8 @@ final class IntelipostProxy {
      */
     public function ConsultarCotacao($idCotacaoIntelipost)
     {
-        $this->_curl = new Utils\CurlWrapper('GET');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);        
-        $this->_curl->SetReturnTransfer(true);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
-        $this->_curl->SetIncludeHeader(false);
-        $this->_curl->SetCustomRequest("GET");
-        
+        $this->InitializeDefaultCurl();
+        $this->_curl->SetCustomRequest("GET");        
         $this->_curl->CreateCurl($this->_baseURL . "/quote/$idCotacaoIntelipost");
         
         return new Response\IntelipostCotacaoSemVolumeResponse($this->_curl->GetResult());         
@@ -58,24 +53,13 @@ final class IntelipostProxy {
      */
     public function CotarSemVolumes(IntelipostModel\quote_by_product $req)
     {
-        $req->destination_zip_code = str_replace('.', '', $req->destination_zip_code);
-        $req->origin_zip_code = str_replace('.', '', $req->origin_zip_code);
-                
-        $this->_curl = new Utils\CurlWrapper('');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
-        $this->_curl->SetIncludeHeader(false);
+        $this->InitializeDefaultCurl();
         $this->_curl->SetCustomRequest("POST");
         
         $json = json_encode($req);
                 
         if(json_last_error() > 0)
-            throw new IntelipostCotacaoException("Problema ao converter para json", $req);
-        if(count($req->products) == 0)
-            throw new IntelipostCotacaoException("Produtos não informados", $req);
+            throw new IntelipostCotacaoException("json encode error", $req);
         
         $this->_curl->SetPost($json);
         $this->_curl->CreateCurl($this->_baseURL . "/quote_by_product");
@@ -90,12 +74,6 @@ final class IntelipostProxy {
      */
     public function MarcarPedidoParaProntoParaEnvio($numeroDoPedido)
     {
-        $this->_curl = new \integracoesProxies\util\CurlWrapper('');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
@@ -114,12 +92,6 @@ final class IntelipostProxy {
      */
     public function MarcarPedidoParaEnviado($numeroDoPedido)
     {
-        $this->_curl = new \integracoesProxies\util\CurlWrapper('');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
@@ -138,12 +110,6 @@ final class IntelipostProxy {
      */
     public function CancelarPedidoEnviado($numeroDoPedido)
     {
-        $this->_curl = new \integracoesProxies\util\CurlWrapper('');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
@@ -162,16 +128,8 @@ final class IntelipostProxy {
      */
     public function ConsultarPedidoEnviado($numeroDoPedido)
     {
-        $this->_curl = new \integracoesProxies\util\CurlWrapper('GET');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);        
-        $this->_curl->SetReturnTransfer(true);
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
         $this->_curl->SetIncludeHeader(false);
-        $this->_curl->SetCustomRequest("GET");
-        
+        $this->_curl->SetCustomRequest("GET");        
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/$numeroDoPedido");
         
         return new Response\IntelipostConsultaPedidoResponse($this->_curl->GetResult());
@@ -184,19 +142,13 @@ final class IntelipostProxy {
      */
     public function EnviarPedido(IntelipostModel\shipment_order $shipment_order)
     {   
-        $this->_curl = new Utils\CurlWrapper('');
-        $this->_curl->SetHttpHeaders("Accept: application/json");
-        $this->_curl->SetHttpHeaders("Content-Type: application/json");
-        $this->_curl->SetHttpHeaders("api_key: " . IntelipostConfigurations::Instance()->config->apiKey);        
-        $this->_baseURL = IntelipostConfigurations::Instance()->config->url;
-        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
         $json = json_encode($shipment_order);
         
         if(json_last_error() > 0)
-            throw new IntelipostEnvioPedidoException("Problema ao converter para json", $shipment_order);
+            throw new IntelipostEnvioPedidoException("json encode error", $shipment_order);
         
         $this->_curl->SetPost($json);
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order");

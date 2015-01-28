@@ -11,7 +11,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     
     private function CreateTypedResponse()
     {
-        $q = new \Intelipost\Response\IntelipostModel\quote();
+        $q = new \Intelipost\IntelipostModel\quote();
         $q->client_id = $this->resultObj->client_id;
         $q->created = $this->resultObj->created;
         $q->created_iso = $this->resultObj->created_iso;        
@@ -19,7 +19,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $q->origin_zip_code = $this->resultObj->origin_zip_code;
         $q->destination_zip_code = $this->resultObj->destination_zip_code;
         
-        $q->additional_information = new \Intelipost\Response\IntelipostModel\additional_information();
+        $q->additional_information = new \Intelipost\IntelipostModel\additional_information();
         $q->additional_information->delivery_method_id = $this->resultObj->additional_information->delivery_method_id;
         $q->additional_information->extra_cost_absolute = $this->resultObj->additional_information->extra_cost_absolute;
         $q->additional_information->free_shipping = $this->resultObj->additional_information->free_shipping;
@@ -29,7 +29,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $opts = $this->resultObj->delivery_options;
         foreach($opts as $op)
         {
-            $do = new \Intelipost\Response\IntelipostModel\DeliveryOption();
+            $do = new \Intelipost\IntelipostModel\delivery_option();
             $do->delivery_estimate_business_days = $op->delivery_estimate_business_days;
             $do->delivery_method_id = $op->delivery_method_id;
             $do->delivery_method_name = $op->delivery_method_name;

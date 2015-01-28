@@ -5,7 +5,9 @@ function load($namespace) {
     if (file_exists($file))
     {
         if(!class_exists($namespace))
+        {
             include $file;
+        }
     }
     else{                
         error_log("Class not found: " . $file);        
