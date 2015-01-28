@@ -1,6 +1,6 @@
 <?php
 
-require_once 'intelipost.inc.php';
+require_once './intelipost.inc.php';
 
 $proxy = new Intelipost\IntelipostProxy();
 $r = $proxy->ConsultarMetodosDeEnvio();
