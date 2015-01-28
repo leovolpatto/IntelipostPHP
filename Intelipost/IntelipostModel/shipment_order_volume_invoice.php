@@ -2,6 +2,9 @@
 
 namespace Intelipost\IntelipostModel;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class shipment_order_volume_invoice {
     /*
       "invoice_series": "2",

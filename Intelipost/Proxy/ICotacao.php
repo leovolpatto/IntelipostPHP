@@ -2,6 +2,9 @@
 
 namespace Intelipost\Proxy;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 interface ICotacao {
     
     /**

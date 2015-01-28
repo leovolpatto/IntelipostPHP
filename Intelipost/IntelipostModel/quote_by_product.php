@@ -2,6 +2,9 @@
 
 namespace Intelipost\IntelipostModel;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class quote_by_product {
 
      /**

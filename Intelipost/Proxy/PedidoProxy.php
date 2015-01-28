@@ -5,6 +5,9 @@ namespace Intelipost\Proxy;
 use Intelipost\Response;
 use Intelipost\IntelipostModel;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     
     /**

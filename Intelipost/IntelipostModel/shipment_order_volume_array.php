@@ -2,6 +2,9 @@
 
 namespace Intelipost\IntelipostModel;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class shipment_order_volume_array {
     /*
       "shipment_order_volume_number": 1,

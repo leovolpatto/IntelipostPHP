@@ -3,7 +3,7 @@
 namespace Intelipost;
 
 /**
- * Singleton para busca das configurações da integração
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
  */
 final class IntelipostConfigurations {
     

@@ -5,6 +5,9 @@ namespace Intelipost\Proxy;
 use Intelipost\Response;
 use Intelipost\IntelipostModel;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class CotacaoProxy extends ProxyBase implements ICotacao {
     
     /**

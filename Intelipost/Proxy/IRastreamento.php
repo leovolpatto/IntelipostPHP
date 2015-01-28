@@ -3,8 +3,7 @@
 namespace Intelipost\Proxy;
 
 /**
- *
- * @author leonardo
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
  */
 interface IRastreamento {
     

@@ -2,6 +2,9 @@
 
 namespace Intelipost;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 final class Intelipost {
     /**
      * @var Proxy\ICEP

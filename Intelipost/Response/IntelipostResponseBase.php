@@ -2,6 +2,9 @@
 
 namespace Intelipost\Response;
 
+/**
+ * @author Leonardo Volpatto <leovolpatto@gmail.com>
+ */
 abstract class IntelipostResponseBase {
 
     protected $apiResult;
