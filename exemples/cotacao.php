@@ -1,6 +1,6 @@
 <?php
 
-require_once 'intelipost.inc.php';
+require_once '../intelipost.inc.php';
 
 
 $req = new \Intelipost\IntelipostModel\quote_by_product();

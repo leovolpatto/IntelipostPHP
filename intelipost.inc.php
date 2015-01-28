@@ -1,14 +1,18 @@
 <?php
 
 function load($namespace) {
-    $file = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . ".php";  
-    if (file_exists($file))
+    
+    if(class_exists($namespace))
     {
-        if(!class_exists($namespace))
-        {
-            include $file;
-        }
+        var_dump($namespace . "  exists");
+        return;
     }
+    
+    $projectRootPath = __DIR__ .  DIRECTORY_SEPARATOR;
+    $file =  $projectRootPath . str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . ".php";
+    
+    if (file_exists($file))
+        include $file;
     else{                
         error_log("Class not found: " . $file);        
         throw new \Exception("Class not found: " . $file);

@@ -1,9 +1,9 @@
 <?php
 
-require_once 'intelipost.inc.php';
+require_once '../intelipost.inc.php';
 
-$proxy = new Intelipost\IntelipostProxy();
-$r = $proxy->ConsultarCotacao(1988160);
+$proxy = new Intelipost\Proxy\CotacaoProxy();
+$r = $proxy->ConsultarUmaCotacao(1988160);
 
 if ($r->isSuccess) {    
     var_dump($r->GetResult());
