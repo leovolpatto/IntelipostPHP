@@ -1,27 +1,8 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\IntelipostModel;
+namespace Intelipost\IntelipostModel;
 
 final class end_customer {
-    /*
-      "first_name": "Pablo",
-      "last_name": "del Vecchio",
-      "email": "Pablo@bla.de",
-      "phone": "00551234567",
-      "cellphone": "067781239123",
-      "is_company": true,
-      "federal_tax_payer_id": "1278312873",
-      "state_tax_payer_id": "2314234",
-      "shipping_address": "R Valia",
-      "shipping_number": "2",
-      "shipping_additional": "loco",
-      "shipping_reference": "",
-      "shipping_quarter": "poco",
-      "shipping_city": "Sao Paulo",
-      "shipping_state": "Bahia",
-      "shipping_zip_code": "1234-4567",
-      "shipping_country": "BR"
-     */
 
     public $first_name;
     public $last_name;

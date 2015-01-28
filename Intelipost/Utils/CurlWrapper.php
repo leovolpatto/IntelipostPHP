@@ -1,6 +1,6 @@
 <?php
 
-namespace integracoesProxies\util;
+namespace Intelipost\Utils;
 
 final class CurlWrapper {
 

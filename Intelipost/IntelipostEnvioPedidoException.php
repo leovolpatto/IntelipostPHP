@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost;
+namespace Intelipost;
 
 final class IntelipostEnvioPedidoException extends \Exception {
     

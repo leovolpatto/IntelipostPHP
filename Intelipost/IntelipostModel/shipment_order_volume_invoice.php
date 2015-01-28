@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\IntelipostModel;
+namespace Intelipost\IntelipostModel;
 
 final class shipment_order_volume_invoice {
     /*

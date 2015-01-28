@@ -1,8 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\Response;
-
-require_once SYSTEM_DIR . 'integracao/Logistica/IIntegracaoLogisticaProxy.php';
+namespace Intelipost\Response;
 
 abstract class IntelipostResponseBase extends \IntegracaoLogisticaResult {
 

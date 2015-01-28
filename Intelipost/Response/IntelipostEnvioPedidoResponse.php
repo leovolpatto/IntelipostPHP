@@ -1,8 +1,8 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\Response;
+namespace Intelipost\Response;
 
-final class IntelipostEnvioPedidoResponse extends \integracao\Logistica\IntegracaoIntelipost\Response\IntelipostResponseBase {
+final class IntelipostEnvioPedidoResponse extends \Intelipost\Response\Response\IntelipostResponseBase {
 
  
 

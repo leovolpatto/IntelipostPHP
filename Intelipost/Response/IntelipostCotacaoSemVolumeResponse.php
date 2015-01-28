@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\Response;
+namespace Intelipost\Response;
 
 final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     
@@ -11,7 +11,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     
     private function CreateTypedResponse()
     {
-        $q = new \integracao\Logistica\IntegracaoIntelipost\IntelipostModel\quote();
+        $q = new \Intelipost\Response\IntelipostModel\quote();
         $q->client_id = $this->resultObj->client_id;
         $q->created = $this->resultObj->created;
         $q->created_iso = $this->resultObj->created_iso;        
@@ -19,7 +19,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $q->origin_zip_code = $this->resultObj->origin_zip_code;
         $q->destination_zip_code = $this->resultObj->destination_zip_code;
         
-        $q->additional_information = new \integracao\Logistica\IntegracaoIntelipost\IntelipostModel\additional_information();
+        $q->additional_information = new \Intelipost\Response\IntelipostModel\additional_information();
         $q->additional_information->delivery_method_id = $this->resultObj->additional_information->delivery_method_id;
         $q->additional_information->extra_cost_absolute = $this->resultObj->additional_information->extra_cost_absolute;
         $q->additional_information->free_shipping = $this->resultObj->additional_information->free_shipping;
@@ -29,7 +29,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $opts = $this->resultObj->delivery_options;
         foreach($opts as $op)
         {
-            $do = new \integracao\Logistica\IntegracaoIntelipost\IntelipostModel\DeliveryOption();
+            $do = new \Intelipost\Response\IntelipostModel\DeliveryOption();
             $do->delivery_estimate_business_days = $op->delivery_estimate_business_days;
             $do->delivery_method_id = $op->delivery_method_id;
             $do->delivery_method_name = $op->delivery_method_name;
@@ -46,7 +46,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $vls = $this->resultObj->volumes;
         foreach($vls as $v)
         {
-            $vo = new \integracao\Logistica\IntegracaoIntelipost\IntelipostModel\volume();
+            $vo = new \Intelipost\Response\IntelipostModel\volume();
             $vo->cost_of_goods = $v->cost_of_goods;
             $vo->description = $v->description;
             $vo->height = $v->height;
@@ -66,7 +66,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     }
     
     /**
-     * @return \integracao\Logistica\IntegracaoIntelipost\IntelipostModel\quote
+     * @return \Intelipost\Response\IntelipostModel\quote
      */
     public function GetResult() {
         

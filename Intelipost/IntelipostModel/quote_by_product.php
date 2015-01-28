@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\IntelipostModel;
+namespace Intelipost\IntelipostModel;
 
 final class quote_by_product {
 
@@ -15,13 +15,13 @@ final class quote_by_product {
 
     /**
      * @var product[]
-     * @arrayOf integracao\Logistica\IntegracaoIntelipost\IntelipostModel\product
+     * @arrayOf Intelipost\IntelipostModel\product
      */
     public $products;
 
     /**
      * @var additional_information
-     * @objectType integracao\Logistica\IntegracaoIntelipost\IntelipostModel\additional_information
+     * @objectType Intelipost\IntelipostModel\additional_information
      */
     public $additional_information;
     

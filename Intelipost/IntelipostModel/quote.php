@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\IntelipostModel;
+namespace Intelipost\IntelipostModel;
 
 final class quote {
     
@@ -30,12 +30,12 @@ final class quote {
     public $created_iso;
     /**
      * @var additional_information
-     * @objectType integracao\Logistica\IntegracaoIntelipost\IntelipostModel\additional_information
+     * @objectType Intelipost\IntelipostModel\additional_information
      */
     public $additional_information;
     /**
      * @var DeliveryOption[]
-     * @arrayOf integracao\Logistica\IntegracaoIntelipost\IntelipostModel\DeliveryOption
+     * @arrayOf Intelipost\IntelipostModel\DeliveryOption
      */
     public $delivery_options;
     /**

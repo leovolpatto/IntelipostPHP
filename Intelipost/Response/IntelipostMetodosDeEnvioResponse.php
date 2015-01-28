@@ -1,6 +1,6 @@
 <?php
 
-namespace integracao\Logistica\IntegracaoIntelipost\Response;
+namespace Intelipost\Response;
 
 final class IntelipostMetodosDeEnvioResponse extends IntelipostResponseBase{
     
