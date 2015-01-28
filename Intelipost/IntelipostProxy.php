@@ -72,7 +72,7 @@ final class IntelipostProxy {
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostPedidoMarcadoComoProntoResponse
      */
-    public function MarcarPedidoParaProntoParaEnvio($numeroDoPedido)
+    public function MarcarPedidoComoProntoParaEnvio($numeroDoPedido)
     {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
@@ -90,7 +90,7 @@ final class IntelipostProxy {
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */
-    public function MarcarPedidoParaEnviado($numeroDoPedido)
+    public function MarcarPedidoComoEnviado($numeroDoPedido)
     {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
@@ -108,7 +108,7 @@ final class IntelipostProxy {
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
      */
-    public function CancelarPedidoEnviado($numeroDoPedido)
+    public function CancelarPedidoDeEnvio($numeroDoPedido)
     {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
@@ -126,7 +126,7 @@ final class IntelipostProxy {
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostConsultaPedidoResponse
      */
-    public function ConsultarPedidoEnviado($numeroDoPedido)
+    public function ConsultarPedidoDeEnvio($numeroDoPedido)
     {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("GET");        
@@ -140,7 +140,7 @@ final class IntelipostProxy {
      * @return \Intelipost\Response\IntelipostEnvioPedidoResponse
      * @throws IntelipostEnvioPedidoException
      */
-    public function EnviarPedido(IntelipostModel\shipment_order $shipment_order)
+    public function CriarPedidoDeEnvio(IntelipostModel\shipment_order $shipment_order)
     {   
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");

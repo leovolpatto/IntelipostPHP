@@ -11,6 +11,8 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     
     private function CreateTypedResponse()
     {
+        //TODO use jsonParser
+        
         $q = new \Intelipost\IntelipostModel\quote();
         $q->client_id = $this->resultObj->client_id;
         $q->created = $this->resultObj->created;
@@ -46,7 +48,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
         $vls = $this->resultObj->volumes;
         foreach($vls as $v)
         {
-            $vo = new \Intelipost\Response\IntelipostModel\volume();
+            $vo = new \Intelipost\IntelipostModel\volume();
             $vo->cost_of_goods = $v->cost_of_goods;
             $vo->description = $v->description;
             $vo->height = $v->height;
@@ -66,7 +68,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     }
     
     /**
-     * @return \Intelipost\Response\IntelipostModel\quote
+     * @return \Intelipost\IntelipostModel\quote
      */
     public function GetResult() {
         

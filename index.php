@@ -4,5 +4,4 @@ require_once 'intelipost.inc.php';
 
 echo 'hello';
 
-$t = new Intelipost\IntelipostProxy();
-
+$t = new \Intelipost\Intelipost();
