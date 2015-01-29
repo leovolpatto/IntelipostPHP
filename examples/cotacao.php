@@ -19,9 +19,9 @@ $produto->weight = 10;
 $produto->width = 20;
 $req->AddProduct($produto);
 
-$proxy = new Intelipost\IntelipostProxy();
-$resEnvio = $proxy->CotarSemVolumes($req);
-if ($resEnvio->isSuccess) {    
+$proxy = new \Intelipost\Intelipost();
+$resEnvio = $proxy->GetCotacao()->CriarCotacaoPorProduto($req);
+if ($resEnvio->isSuccess) {
     var_dump($resEnvio->GetResult());
 } else {
     echo '<p>Falha</p>';

@@ -1,9 +1,9 @@
 <?php
 
-require_once './intelipost.inc.php';
+require_once '../intelipost.inc.php';
 
-$proxy = new Intelipost\IntelipostProxy();
-$r = $proxy->ConsultarMetodosDeEnvio();
+$proxy = new \Intelipost\Intelipost();
+$r = $proxy->GetCotacao()->ConsultarMetodosDeEnvio();
 
 if ($r->isSuccess) {    
     var_dump($r->GetResult());
