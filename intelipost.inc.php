@@ -4,7 +4,6 @@ function load($namespace) {
     
     if(class_exists($namespace))
     {
-        var_dump($namespace . "  exists");
         return;
     }
     
@@ -14,9 +13,7 @@ function load($namespace) {
     if (file_exists($file))
         include $file;
     else{                
-        error_log("Class not found: " . $file);        
         throw new \Exception("Class not found: " . $file);
-        //mail('leovolpatto@gmail.com', 'Classe nao encontrada', "Nao foi encontrado: $file   nem   $file1");
     }
 }
 
