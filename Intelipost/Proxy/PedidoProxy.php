@@ -77,6 +77,21 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     }
 
     /**
+     * @param Arguments\MarcarDiversosPedidoComoEnviadoArgs $args
+     * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
+     */
+    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarDiversosPedidoComoEnviadoArgs $args) {
+        $this->_curl->SetIncludeHeader(false);
+        $this->_curl->SetCustomRequest("POST");
+        
+        $this->_curl->SetPost(json_encode($args->GetOrders()));
+        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/shipped");
+        
+        $res = $this->_curl->GetResult();
+        return new Response\IntelipostPedidoMarcadoComoEnviadoResponse($res);        
+    }
+
+    /**
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
      */
@@ -93,6 +108,21 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
         return new Response\IntelipostPedidoMarcadoComoProntoResponse($res);        
     }
 
+    /**
+     * @param array $pedidos
+     * @return \Intelipost\Response\IntelipostPedidoMarcadoComoProntoResponse
+     */
+    public function MarcarDiversosPedidosParaProntoParaEnvio(array $pedidos) {
+        $this->_curl->SetIncludeHeader(false);
+        $this->_curl->SetCustomRequest("POST");
+        
+        $this->_curl->SetPost(json_encode($pedidos));
+        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/multi/ready_for_shipment");
+        
+        $res = $this->_curl->GetResult();
+        return new Response\IntelipostPedidoMarcadoComoProntoResponse($res);
+    }    
+    
     public function AtualizarDadosDeRastreamento() {
         throw new \Exception('Not implemented yet');
     }
@@ -127,5 +157,5 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
 
     public function ConsultarVolumesCaixas() {
         throw new \Exception('Not implemented yet');
-    }    
+    }
 }

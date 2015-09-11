@@ -37,7 +37,19 @@ interface IPedidoDeEnvio {
      * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */    
     public function MarcarPedidoComoEnviado($numeroDoPedido);
+
+    /**
+     * @param Arguments\MarcarDiversosPedidoComoEnviadoArgs $args
+     * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoEnviadoResponse
+     */    
+    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarDiversosPedidoComoEnviadoArgs $args);
     
+    /**
+     * @param array $pedidos
+     * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoProntoResponse[]
+     */
+    public function MarcarDiversosPedidosParaProntoParaEnvio(array $pedidos);
+        
     public function ImpressaoDasEtiquetas();
     
     public function ConsultarDadosDoDestinatario();
