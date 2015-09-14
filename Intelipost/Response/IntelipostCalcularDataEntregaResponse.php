@@ -14,7 +14,6 @@ final class IntelipostCalcularDataEntregaResponse extends IntelipostResponseBase
     
     private function CreateTypedResponse()
     {
-        $this->business_days = new business_days();
         $p = new \Intelipost\Utils\JSONParser();
         $this->business_days = $p->parseFromStdClass(new business_days(), $this->resultObj);
     }
