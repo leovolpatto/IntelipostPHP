@@ -15,7 +15,7 @@ final class IntelipostCepAutoCompleteResponse extends IntelipostResponseBase {
     private function CreateTypedResponse()
     {
         $p = new \Intelipost\Utils\JSONParser();
-        $this->address = $p->parseFromStdClass(new \Intelipost\IntelipostModel\address_complete(), $this->resultObj);        
+        $this->address = $p->parseFromStdClass(new \Intelipost\IntelipostModel\address_complete(), $this->resultObj);
     }
     
     protected function ProcessResponse() {
